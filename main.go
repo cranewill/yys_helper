@@ -4,6 +4,8 @@ import (
 	"YYS_helper/consts"
 	"YYS_helper/models"
 	"fmt"
+	"strconv"
+	"time"
 )
 
 func main() {
@@ -30,7 +32,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 	var selection int
 	for {
 		_, err := fmt.Scanln(&selection)
-		if err != nil || (selection != 1 && selection != 2) {
+		if err != nil {
 			fmt.Println(`
 输入错误，请重新输入：
 1.妖气封印
@@ -40,12 +42,17 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 			break
 		}
 	}
-	switch selection {
-	case 1:
-		model := models.GetModel(consts.MODEL_HERO_PIECE)
-		model.Start()
-	case 2:
-		model := models.GetModel(consts.MODEL_SOUL)
-		model.Start()
+	model, ok := models.GetModel(consts.MODEL_HERO_PIECE)
+	if !ok {
+		fmt.Println(`
+输入错误，请重新输入：
+1.妖气封印
+2.御魂副本(队长)
+`)
 	}
+	for i := 3; i > 0; i-- {
+		fmt.Println("倒计时: " + strconv.Itoa(i))
+		time.Sleep(time.Second)
+	}
+	model.Start()
 }

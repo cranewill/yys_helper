@@ -20,10 +20,11 @@ type BaseModel struct {
 	Tick       *time.Ticker
 }
 
-var modelPool = make(map[string]IModel)
+var modelPool = make(map[int]IModel)
 
-func GetModel(id string) IModel {
-	return modelPool[id]
+func GetModel(id int) (IModel, bool) {
+	model, ok := modelPool[id]
+	return model, ok
 }
 
 var heroPieceSymbol,

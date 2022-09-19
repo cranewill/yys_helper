@@ -1,8 +1,8 @@
 package consts
 
 const (
-	MODEL_HERO_PIECE = "hero_piece"
-	MODEL_SOUL       = "soul"
+	MODEL_HERO_PIECE = 1
+	MODEL_SOUL       = 2
 )
 
 const (
