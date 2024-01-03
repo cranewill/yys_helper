@@ -74,7 +74,7 @@ func find(target, source image.Image) (result gcv.Result) {
 }
 
 func valid(result gcv.Result) bool {
-	return result.MaxVal[0] > 0.9
+	return result.MaxVal[0] > 1.0
 }
 
 func onFindSymbol(result gcv.Result, state *string, nextState string) {
